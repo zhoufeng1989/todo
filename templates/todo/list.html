@@ -1,0 +1,12 @@
+{% if todo_list %}
+    <ul>
+    {% for entry in todo_list %}
+        <li>
+            <p><a href="{% url 'detail' entry.id %}">{{ entry.content }}</a></p>
+            <p>status: {{entry.status}} </p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p> Nothing todo now </p>
+{% endif %}
