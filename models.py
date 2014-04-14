@@ -58,7 +58,7 @@ class Item(models.Model):
     content = models.TextField(null=False)
     create_time = models.DateTimeField()
     update_time = models.DateTimeField()
-    priority = models.IntegerField(choices=STATUS_CHOICES, default=STATUS_INIT)
+    priority = models.IntegerField(choices=PRIORITY_CHOICES, default=STATUS_INIT)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PRIORITY_LOW)
     finish_time = models.DateTimeField()
 

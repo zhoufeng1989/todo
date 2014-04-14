@@ -1,5 +1,5 @@
 from django import forms
-from todo.models import User
+from todo.models import User, Item
 from django.contrib.auth import authenticate
 
 
@@ -39,3 +39,15 @@ class LoginForm(forms.Form):
         if not user:
             raise forms.ValidationError('email or password not correct')
         return self.cleaned_data
+
+
+class ItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = ('content', 'priority', 'finish_time')
+
+    def save(self, commit=True):
+        item = super(ItemForm, self).save(commit=False)
+        if commit:
+            item.save()
+        return item
