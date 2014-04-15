@@ -3,5 +3,5 @@
 <p>create_time: {{ item.create_time}} </p>
 <p>update_time: {{ item.update_time }} </p>
 <p>finish_time: {{ item.finish_time }} </p>
-<p> status: {{ item.status }} </p>
-<p> priority: {{ item.priority }} </p>
+<p> status: {{ item.get_status_display }} </p>
+<p> priority: {{ item.get_priority_display }} </p>

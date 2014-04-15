@@ -18,6 +18,11 @@ urlpatterns = patterns(
             views.ItemCreateView.as_view(), login_url=reverse_lazy('login')
         ),
         name='create'),
+    url(r'^item/update/(?P<pk>\d+)/$',
+        login_required(
+            views.ItemUpdateView.as_view(), login_url=reverse_lazy('login')
+        ),
+        name='update'),
     url(r'^item/(?P<pk>\d+)/$',
         login_required(
             views.ItemDetailView.as_view(), login_url=reverse_lazy('login')

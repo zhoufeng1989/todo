@@ -1,9 +1,12 @@
+<h1> todo list </h1>
 {% if todo_list %}
     <ul>
     {% for entry in todo_list %}
         <li>
             <p><a href="{% url 'detail' entry.id %}">{{ entry.content }}</a></p>
-            <p>status: {{entry.status}} </p>
+            <p>status: {{ entry.get_status_display }} </p>
+            <p>priority: {{ entry.get_priority_display }} </p>
+            <p>finish_time: {{ entry.finish_time }} </p>
         </li>
     {% endfor %}
     </ul>

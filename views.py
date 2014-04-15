@@ -36,10 +36,10 @@ class LoginView(FormView):
 
 class TodoListView(ListView):
     template_name = 'todo/list.html'
+    context_object_name = 'todo_list'
 
     def get_queryset(self):
-        self.user = get_object_or_404(User, pk=self.request.user.id)
-        return Item.objects.filter(user=self.user)
+        return Item.objects.filter(user_id=self.request.user.id)
 
 
 class ItemView(FormView):
@@ -66,7 +66,10 @@ class ItemCreateView(ItemView, CreateView):
 
 
 class ItemUpdateView(ItemView, UpdateView):
-    pass
+    template_name='todo/update.html'
+
+    def get_queryset(self):
+        return Item.objects.filter(id=self.kwargs['pk'])
 
 
 class ItemDetailView(DetailView):
