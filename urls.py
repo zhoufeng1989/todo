@@ -27,5 +27,8 @@ urlpatterns = patterns(
         login_required(
             views.ItemDetailView.as_view(), login_url=reverse_lazy('login')
         ),
-        name='detail')
+        name='detail'),
+    url(r'^item/set_finish/$',
+        login_required(views.set_finish, login_url=reverse_lazy('login')),
+        name='set_finish'),
 )

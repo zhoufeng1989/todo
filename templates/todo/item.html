@@ -1,7 +1,19 @@
 <h1> item </h1>
+    {% if msg %}
+        <p> {{ msg }} </p>
+    {% endif %}
 <p>content: {{ item.content }} </p>
 <p>create_time: {{ item.create_time}} </p>
 <p>update_time: {{ item.update_time }} </p>
 <p>finish_time: {{ item.finish_time }} </p>
 <p> status: {{ item.get_status_display }} </p>
+{% if item.status in [item.STATUS_INIT, item.STATUS_ON] %}
+    <p>
+        <form action="{% url 'set_finish' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="item_id" value= "{{ item.id }}"/>
+            <input type="submit" value="set finish"/>
+        </form>
+    </p>
+{% endif %}
 <p> priority: {{ item.get_priority_display }} </p>

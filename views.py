@@ -75,3 +75,19 @@ class ItemUpdateView(ItemView, UpdateView):
 class ItemDetailView(DetailView):
     model = Item
     template_name = 'todo/item.html'
+
+
+def set_finish(request):
+    try:
+        item = Item.objects.get(pk=request.POST['item_id'])
+    except Item.DoesNotExist:
+        msg = 'set item finished error!'
+    else:
+        item.status = Item.STATUS_FINISH
+        item.finish_time = datetime.now()
+        item.save()
+        msg = 'set item finished success !'
+    return render(request, 'todo/item.html', {
+        'item': item,
+        'msg': msg
+    })
